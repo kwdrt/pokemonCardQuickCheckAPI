@@ -5,14 +5,16 @@ import random
 
 app = Flask(__name__)
 
-def get_shown_card(i, cards_list, eur_value, data_source):
+def get_shown_card(i, cards_list, eur_value, data_source, add):
     eur_price = 0
     pln_price = 0
     try:
-        cards_list.append([data_source["data"][i]["images"]["small"],
-                                        data_source["data"][i]["cardmarket"]["prices"]["avg7"],
-                                        data_source["data"][i]["cardmarket"]["prices"]["avg7"] *
-                                        eur_value["rates"][0]["mid"]])
+        if add:
+            cards_list.append([data_source["data"][i]["images"]["small"],
+                                            data_source["data"][i]["cardmarket"]["prices"]["avg7"],
+                                            data_source["data"][i]["cardmarket"]["prices"]["avg7"] *
+                                            eur_value["rates"][0]["mid"]])
+
         eur_price = data_source["data"][i]["cardmarket"]["prices"]["avg7"]
         pln_price = data_source["data"][i]["cardmarket"]["prices"]["avg7"] * eur_value["rates"][0]["mid"]
     except KeyError:
@@ -78,26 +80,29 @@ def run_service():
     total_shown_pln_price_pokemon_one = 0
     total_shown_pln_price_pokemon_two = 0
 
+    print(shown_cards)
+    print(8 < shown_cards)
+
     for i in range(max(total_pokemon_one_cards, total_pokemon_two_cards)):
         if i < min(total_pokemon_one_cards, 250) and i < shown_cards:
-            eur_card, pln_card = get_shown_card(i, pokemon_one_cards_shown, eur_value, pokemon_one_cards)
+            eur_card, pln_card = get_shown_card(i, pokemon_one_cards_shown, eur_value, pokemon_one_cards, True)
             total_shown_eur_price_pokemon_one += eur_card
             total_shown_pln_price_pokemon_one += pln_card
 
 
         if i < min(total_pokemon_two_cards, 250) and i < shown_cards:
-            eur_card, pln_card = get_shown_card(i, pokemon_two_cards_shown, eur_value, pokemon_two_cards)
+            eur_card, pln_card = get_shown_card(i, pokemon_two_cards_shown, eur_value, pokemon_two_cards, True)
             total_shown_eur_price_pokemon_two += eur_card
             total_shown_pln_price_pokemon_two += pln_card
 
         if i < min(total_pokemon_one_cards, 250):
-            eur_card, pln_card = get_shown_card(i, pokemon_one_cards_shown, eur_value, pokemon_one_cards)
+            eur_card, pln_card = get_shown_card(i, pokemon_one_cards_shown, eur_value, pokemon_one_cards, False)
             total_eur_price_pokemon_one += eur_card
             total_pln_price_pokemon_one += pln_card
 
 
         if i < min(total_pokemon_two_cards, 250):
-            eur_card, pln_card = get_shown_card(i, pokemon_two_cards_shown, eur_value, pokemon_two_cards)
+            eur_card, pln_card = get_shown_card(i, pokemon_two_cards_shown, eur_value, pokemon_two_cards, False)
             total_eur_price_pokemon_two += eur_card
             total_pln_price_pokemon_two += pln_card
 
