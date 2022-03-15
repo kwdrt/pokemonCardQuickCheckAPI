@@ -1,0 +1,17 @@
+<html>
+    <p>Pokemon info and card summary</p>
+<form action="/result" method="POST">
+    <label for="pokemon_one"> First pokemon:</label>
+    <input type="text" name="pokemon_one" id="pokemon_one" required>
+
+    <label for="pokemon_two"> Second pokemon:</label>
+    <input type="text" name="pokemon_two" id="pokemon_two" required>
+
+    <label for="shown_cards"> Cards to show:</label>
+    <input type="number" name="shown_cards" id="shown_cards" required>
+    <input type="submit">
+</form>
+
+{% block content %}
+{% endblock %}
+</html>

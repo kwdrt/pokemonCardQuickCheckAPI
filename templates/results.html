@@ -1,0 +1,74 @@
+{% extends "index.html" %}
+
+{% block content %}
+
+    {% for error in errors %}
+        <p>{{error}}</p>
+    {% endfor %}
+
+    {% if pokemon_one %}
+        <p> Chosen first pokemon - {{pokemon_one}}</p>
+        {% if pokemon_one_picture %}
+        <img src={{pokemon_one_picture}}>
+        {% endif %}
+    {% endif %}
+
+    {% if pokemon_two %}
+        <p> Chosen second pokemon - {{pokemon_two}}</p>
+        {% if pokemon_two_picture %}
+        <img src={{pokemon_two_picture}}>
+        {% endif %}
+    {% endif %}
+
+    {% if shown_cards %}
+        <p>Chosen amount of cards - {{shown_cards}}</p>
+    {% endif %}
+
+    {% for card in pokemon_one_cards_shown %}
+        <img src={{card[0]}}>
+        <p>{{card[1]}} EUR</p>
+        <p>{{card[2]}} PLN</p>
+        <br>
+    {% endfor %}
+
+    {% for card in pokemon_two_cards_shown %}
+        <img src={{card[0]}}>
+        <p>{{card[1]}} EUR</p>
+        <p>{{card[2]}} PLN</p>
+        <br>
+    {% endfor %}
+
+    {% if shown_cards %}
+        <div>
+        <p>Total cost of shown {{pokemon_one}} cards:</p>
+        <p>{{total_shown_eur_price_pokemon_one}} EUR</p>
+        <p>{{total_shown_pln_price_pokemon_one}} PLN</p>
+        </div>
+
+        <div>
+        <p>Total cost of all {{pokemon_one}} cards:</p>
+        <p>{{total_eur_price_pokemon_one}} EUR</p>
+        <p>{{total_pln_price_pokemon_one}} PLN</p>
+        </div>
+
+        <div>
+        <p>Total cost of shown {{pokemon_two}} cards:</p>
+        <p>{{total_shown_eur_price_pokemon_two}} EUR</p>
+        <p>{{total_shown_pln_price_pokemon_two}} PLN</p>
+        </div>
+
+        <div>
+        <p>Total cost of all {{pokemon_two}} cards:</p>
+        <p>{{total_eur_price_pokemon_two}} EUR</p>
+        <p>{{total_pln_price_pokemon_two}} PLN</p>
+        </div>
+    {% endif %}
+
+    {% if chart_one %}
+        <img src={{chart_one}}>
+    {% endif %}
+
+    {%if chart_two %}
+        <img src={{chart_two}}>
+    {% endif %}
+{% endblock %}
