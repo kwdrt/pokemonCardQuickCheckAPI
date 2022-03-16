@@ -32,10 +32,6 @@
      </div>
     {% endif %}
 
-    {% if shown_cards %}
-        <p>Chosen amount of cards - {{shown_cards}}</p>
-    {% endif %}
-
     {% if pokemon_one_cards_shown %}
     <div class="container-fluid">
         <div class="row justify-content-center">
@@ -71,28 +67,36 @@
     {% endif %}
 
     {% if shown_cards %}
-        <div>
-        <p>Total cost of shown {{pokemon_one}} cards:</p>
-        <p>{{total_shown_eur_price_pokemon_one}} EUR</p>
-        <p>{{total_shown_pln_price_pokemon_one}} PLN</p>
-        </div>
+        <div class="container-fluid">
+            <div class="row justify-content-around">
+                <div class="col-1 card-body text-center">
+                    <div>
+                        <p>Total cost of shown {{pokemon_one}} cards:</p>
+                        <p>{{total_shown_eur_price_pokemon_one}} EUR</p>
+                        <p>{{total_shown_pln_price_pokemon_one}} PLN</p>
+                    </div>
 
-        <div>
-        <p>Total cost of all {{pokemon_one}} cards:</p>
-        <p>{{total_eur_price_pokemon_one}} EUR</p>
-        <p>{{total_pln_price_pokemon_one}} PLN</p>
-        </div>
+                    <div>
+                        <p>Total cost of all {{pokemon_one}} cards:</p>
+                        <p>{{total_eur_price_pokemon_one}} EUR</p>
+                        <p>{{total_pln_price_pokemon_one}} PLN</p>
+                    </div>
+                </div>
 
-        <div>
-        <p>Total cost of shown {{pokemon_two}} cards:</p>
-        <p>{{total_shown_eur_price_pokemon_two}} EUR</p>
-        <p>{{total_shown_pln_price_pokemon_two}} PLN</p>
-        </div>
+                <div class="col-1 card-body text-center">
+                    <div>
+                        <p>Total cost of shown {{pokemon_two}} cards:</p>
+                        <p>{{total_shown_eur_price_pokemon_two}} EUR</p>
+                        <p>{{total_shown_pln_price_pokemon_two}} PLN</p>
+                    </div>
 
-        <div>
-        <p>Total cost of all {{pokemon_two}} cards:</p>
-        <p>{{total_eur_price_pokemon_two}} EUR</p>
-        <p>{{total_pln_price_pokemon_two}} PLN</p>
+                    <div>
+                        <p>Total cost of all {{pokemon_two}} cards:</p>
+                        <p>{{total_eur_price_pokemon_two}} EUR</p>
+                        <p>{{total_pln_price_pokemon_two}} PLN</p>
+                    </div>
+                </div>
+            </div>
         </div>
     {% endif %}
 

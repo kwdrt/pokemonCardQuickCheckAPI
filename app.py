@@ -12,8 +12,8 @@ def get_shown_card(i, cards_list, eur_value, data_source, add):
         if add:
             cards_list.append([data_source["data"][i]["images"]["small"],
                                             data_source["data"][i]["cardmarket"]["prices"]["avg7"],
-                                            data_source["data"][i]["cardmarket"]["prices"]["avg7"] *
-                                            eur_value["rates"][0]["mid"]])
+                                            round(data_source["data"][i]["cardmarket"]["prices"]["avg7"] *
+                                            eur_value["rates"][0]["mid"],2)])
 
         eur_price = data_source["data"][i]["cardmarket"]["prices"]["avg7"]
         pln_price = data_source["data"][i]["cardmarket"]["prices"]["avg7"] * eur_value["rates"][0]["mid"]
@@ -107,7 +107,16 @@ def run_service():
             total_pln_price_pokemon_two += pln_card
 
     chart_one = get_chart(pokemon_one, pokemon_two, total_pokemon_one_cards, total_pokemon_two_cards, "total+number+of+cards", errors)
-    chart_two = get_chart(pokemon_one, pokemon_two, int(total_eur_price_pokemon_one), int(total_eur_price_pokemon_two), "total+price+of+all+cards", errors)
+    chart_two = get_chart(pokemon_one, pokemon_two, total_eur_price_pokemon_one, total_eur_price_pokemon_two, "total+price+of+all+cards", errors)
+
+    total_shown_pln_price_pokemon_one = round(total_shown_pln_price_pokemon_one, 2)
+    total_shown_pln_price_pokemon_two = round(total_shown_pln_price_pokemon_two, 2)
+    total_shown_eur_price_pokemon_one = round(total_shown_eur_price_pokemon_one, 2)
+    total_shown_eur_price_pokemon_two = round(total_shown_eur_price_pokemon_one, 2)
+    total_eur_price_pokemon_one = round(total_eur_price_pokemon_one, 2)
+    total_eur_price_pokemon_two = round(total_eur_price_pokemon_two, 2)
+    total_pln_price_pokemon_one = round(total_pln_price_pokemon_one, 2)
+    total_pln_price_pokemon_two = round(total_pln_price_pokemon_two, 2)
 
     return render_template(
                             "results.html",
