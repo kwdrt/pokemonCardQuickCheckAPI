@@ -2,41 +2,73 @@
 
 {% block content %}
 
+    {% if errors %}
+    <div class="container">
     {% for error in errors %}
-        <p>{{error}}</p>
+        <div class="mb-3 alert alert-danger alert-dismissible fade show">
+            <p>{{error}}</p>
+        </div>
     {% endfor %}
-
-    {% if pokemon_one %}
-        <p> Chosen first pokemon - {{pokemon_one}}</p>
-        {% if pokemon_one_picture %}
-        <img src={{pokemon_one_picture}}>
-        {% endif %}
+    </div>
     {% endif %}
 
-    {% if pokemon_two %}
-        <p> Chosen second pokemon - {{pokemon_two}}</p>
-        {% if pokemon_two_picture %}
-        <img src={{pokemon_two_picture}}>
-        {% endif %}
+    {% if pokemon_one %}
+     <div class="container-fluid">
+         <div class="row justify-content-center">
+             <div class="card col-1 m-3" style="width: 512px;">
+                <img src="{{pokemon_one_picture}}" class="card-img-top">
+                <div class="card-body">
+                    <h5 class="card-title">Chosen first pokemon - {{pokemon_one}}</h5>
+                </div>
+             </div>
+
+             <div class="card col-1 m-3 p-1" style="width: 512px;">
+                <img src="{{pokemon_two_picture}}" class="card-img-top">
+                <div class="card-body">
+                    <h5 class="card-title">Chosen second pokemon - {{pokemon_two}}</h5>
+                </div>
+             </div>
+         </div>
+     </div>
     {% endif %}
 
     {% if shown_cards %}
         <p>Chosen amount of cards - {{shown_cards}}</p>
     {% endif %}
 
+    {% if pokemon_one_cards_shown %}
+    <div class="container-fluid">
+        <div class="row justify-content-center">
     {% for card in pokemon_one_cards_shown %}
-        <img src={{card[0]}}>
-        <p>{{card[1]}} EUR</p>
-        <p>{{card[2]}} PLN</p>
-        <br>
+            <div class="card col-1 m-3 p-1" style="width: 18rem;">
+                <img src="{{card[0]}}" class="card-img-top">
+                <div class="card-body">
+                    <h5 class="card-title"></h5>
+                    <p class="card-text">{{card[1]}} EUR</p>
+                    <p class="card-text">{{card[2]}} PLN</p>
+                </div>
+            </div>
     {% endfor %}
+        </div>
+    </div>
+    {% endif %}
 
+    {% if pokemon_two_cards_shown %}
+    <div class="container-fluid">
+        <div class="row justify-content-center">
     {% for card in pokemon_two_cards_shown %}
-        <img src={{card[0]}}>
-        <p>{{card[1]}} EUR</p>
-        <p>{{card[2]}} PLN</p>
-        <br>
+            <div class="card col-1 m-3 p-1" style="width: 18rem;">
+                <img src="{{card[0]}}" class="card-img-top">
+                <div class="card-body">
+                    <h5 class="card-title"></h5>
+                    <p class="card-text">{{card[1]}} EUR</p>
+                    <p class="card-text">{{card[2]}} PLN</p>
+                </div>
+            </div>
     {% endfor %}
+        </div>
+    </div>
+    {% endif %}
 
     {% if shown_cards %}
         <div>

@@ -1,15 +1,29 @@
 <html>
-    <p>Pokemon info and card summary</p>
-<form action="/result" method="POST">
-    <label for="pokemon_one"> First pokemon:</label>
-    <input type="text" name="pokemon_one" id="pokemon_one" required>
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
+<div class="text-center">
+    <p class="h1 display-4 fw-bold">Pokemon info and card summary</p>
+</div>
+<form action="/result" method="POST" class="container">
+    <div class="mb-3">
+        <label for="pokemon_one" class="form-label"> First pokemon:</label>
+        <input type="text" class="form-control" name="pokemon_one" id="pokemon_one" required>
+    </div>
 
-    <label for="pokemon_two"> Second pokemon:</label>
-    <input type="text" name="pokemon_two" id="pokemon_two" required>
+    <div class="mb-3">
+        <label for="pokemon_two" class="form-label"> Second pokemon:</label>
+        <input type="text" class="form-control" name="pokemon_two" id="pokemon_two" required>
+    </div>
 
-    <label for="shown_cards"> Cards to show:</label>
-    <input type="number" name="shown_cards" id="shown_cards" required>
-    <input type="submit">
+    <div class="mb-3">
+        <label for="shown_cards" class="form-label"> Cards to show:</label>
+        <input type="number" class="form-control" name="shown_cards" id="shown_cards" required>
+    </div>
+
+    <div class="mt-2">
+        <button type="submit" class="btn btn-primary">Get data</button>
+    </div>
+
+
 </form>
 
 {% block content %}
