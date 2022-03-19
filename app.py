@@ -1,7 +1,6 @@
 from flask import Flask, render_template, request
 from api_handlers import *
 from threading import Thread
-import random
 
 app = Flask(__name__)
 
@@ -13,7 +12,8 @@ def get_shown_card(i, cards_list, eur_value, data_source, add):
             cards_list.append([data_source["data"][i]["images"]["small"],
                                             data_source["data"][i]["cardmarket"]["prices"]["avg7"],
                                             round(data_source["data"][i]["cardmarket"]["prices"]["avg7"] *
-                                            eur_value["rates"][0]["mid"],2)])
+                                            eur_value["rates"][0]["mid"],2),
+                                            data_source["data"][i]["cardmarket"]["url"]])
 
         eur_price = data_source["data"][i]["cardmarket"]["prices"]["avg7"]
         pln_price = data_source["data"][i]["cardmarket"]["prices"]["avg7"] * eur_value["rates"][0]["mid"]
@@ -35,7 +35,6 @@ def run_service():
     pokemon_one = request.form.get("pokemon_one")
     pokemon_two = request.form.get("pokemon_two")
     shown_cards = int(request.form.get("shown_cards"))
-
 
     pokemon_one_thread = Thread(target=get_pokemon_data, args=(pokemon_one, errors, results))
     pokemon_two_thread = Thread(target=get_pokemon_data, args=(pokemon_two, errors, results))
@@ -89,7 +88,6 @@ def run_service():
             total_shown_eur_price_pokemon_one += eur_card
             total_shown_pln_price_pokemon_one += pln_card
 
-
         if i < min(total_pokemon_two_cards, 250) and i < shown_cards:
             eur_card, pln_card = get_shown_card(i, pokemon_two_cards_shown, eur_value, pokemon_two_cards, True)
             total_shown_eur_price_pokemon_two += eur_card
@@ -99,7 +97,6 @@ def run_service():
             eur_card, pln_card = get_shown_card(i, pokemon_one_cards_shown, eur_value, pokemon_one_cards, False)
             total_eur_price_pokemon_one += eur_card
             total_pln_price_pokemon_one += pln_card
-
 
         if i < min(total_pokemon_two_cards, 250):
             eur_card, pln_card = get_shown_card(i, pokemon_two_cards_shown, eur_value, pokemon_two_cards, False)
