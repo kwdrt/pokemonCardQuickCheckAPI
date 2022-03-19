@@ -30,11 +30,16 @@ def hello_point():
 @app.route("/result", methods=['POST'])
 def run_service():
     errors = []
+    errors.clear()
     results = {}
 
-    pokemon_one = request.form.get("pokemon_one")
-    pokemon_two = request.form.get("pokemon_two")
-    shown_cards = int(request.form.get("shown_cards"))
+    if None in [request.form.get("pokemon_one"), request.form.get("pokemon_two"), request.form.get("shown_cards")]:
+        errors = errors.append("Unable to parse the received form data, please check your request")
+        return render_template("results.html", errors=errors)
+    else:
+        pokemon_one = request.form.get("pokemon_one")
+        pokemon_two = request.form.get("pokemon_two")
+        shown_cards = int(request.form.get("shown_cards"))
 
     pokemon_one_thread = Thread(target=get_pokemon_data, args=(pokemon_one, errors, results))
     pokemon_two_thread = Thread(target=get_pokemon_data, args=(pokemon_two, errors, results))
@@ -78,9 +83,6 @@ def run_service():
     total_pln_price_pokemon_two = 0
     total_shown_pln_price_pokemon_one = 0
     total_shown_pln_price_pokemon_two = 0
-
-    print(shown_cards)
-    print(8 < shown_cards)
 
     for i in range(max(total_pokemon_one_cards, total_pokemon_two_cards)):
         if i < min(total_pokemon_one_cards, 250) and i < shown_cards:
@@ -136,6 +138,15 @@ def run_service():
                             chart_two=chart_two
                            )
 
+@app.errorhandler(404)
+def pageNotFound(error):
+    returned_error = [error]
+    return render_template("results.html", errors=returned_error)
+
+@app.errorhandler(500)
+def internalErrorHandler(error):
+    returned_error = [error]
+    return render_template("results.html", errors=returned_error)
 
 if __name__== '__main__':
     app.run(
