@@ -1,4 +1,6 @@
 from flask import Flask, render_template, request
+from werkzeug.exceptions import HTTPException
+
 from api_handlers import *
 from threading import Thread
 
@@ -34,7 +36,7 @@ def run_service():
     results = {}
 
     if None in [request.form.get("pokemon_one"), request.form.get("pokemon_two"), request.form.get("shown_cards")]:
-        errors = errors.append("Unable to parse the received form data, please check your request")
+        errors.append("Unable to parse the received form data, please check your request")
         return render_template("results.html", errors=errors)
     else:
         pokemon_one = request.form.get("pokemon_one")
@@ -138,15 +140,31 @@ def run_service():
                             chart_two=chart_two
                            )
 
+
 @app.errorhandler(404)
-def pageNotFound(error):
+def page_not_found(error):
+    returned_error = ["The chosen resource was not found, please check the URL used in the request."]
+    return render_template("results.html", errors=returned_error)
+
+
+@app.errorhandler(405)
+def wrong_request(error):
+    returned_error = ["Chosen endpoint does not support this operation."]
+    return render_template("results.html", errors=returned_error)
+
+
+@app.errorhandler(500)
+def internal_error_handler(error):
+    returned_error = ["We have run into an internal server error, please try again or check data."]
+    return render_template("results.html", errors=returned_error)
+
+
+@app.errorhandler(HTTPException)
+def generic_error_handler(error):
     returned_error = [error]
     return render_template("results.html", errors=returned_error)
 
-@app.errorhandler(500)
-def internalErrorHandler(error):
-    returned_error = [error]
-    return render_template("results.html", errors=returned_error)
+
 
 if __name__== '__main__':
     app.run(

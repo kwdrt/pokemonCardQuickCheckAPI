@@ -1,0 +1,190 @@
+{
+	"info": {
+		"_postman_id": "57de3ac6-d476-44f9-9274-b966dd7ad180",
+		"name": "pokemonCardQuickCheckAPI",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "http://192.168.0.38:7776/",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://192.168.0.38:7776/",
+					"protocol": "http",
+					"host": [
+						"192",
+						"168",
+						"0",
+						"38"
+					],
+					"port": "7776",
+					"path": [
+						""
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "http://192.168.0.38:7776/result",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "pokemon_one",
+							"value": "arceus",
+							"type": "text"
+						},
+						{
+							"key": "pokemon_two",
+							"value": "wooloo",
+							"type": "text"
+						},
+						{
+							"key": "shown_cards",
+							"value": "4",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "http://192.168.0.38:7776/result",
+					"protocol": "http",
+					"host": [
+						"192",
+						"168",
+						"0",
+						"38"
+					],
+					"port": "7776",
+					"path": [
+						"result"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "http://192.168.0.38:7776/result",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://192.168.0.38:7776/result",
+					"protocol": "http",
+					"host": [
+						"192",
+						"168",
+						"0",
+						"38"
+					],
+					"port": "7776",
+					"path": [
+						"result"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "http://192.168.0.38:7776/thisendpointdoesnotexist",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://192.168.0.38:7776/thisendpointdoesnotexist",
+					"protocol": "http",
+					"host": [
+						"192",
+						"168",
+						"0",
+						"38"
+					],
+					"port": "7776",
+					"path": [
+						"thisendpointdoesnotexist"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "https://pokeapi.co/api/v2/pokemon/wooloo",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "https://pokeapi.co/api/v2/pokemon/wooloo",
+					"protocol": "https",
+					"host": [
+						"pokeapi",
+						"co"
+					],
+					"path": [
+						"api",
+						"v2",
+						"pokemon",
+						"wooloo"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "https://api.pokemontcg.io/v2/cards?q=name:wooloo",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "https://api.pokemontcg.io/v2/cards?q=name:wooloo",
+					"protocol": "https",
+					"host": [
+						"api",
+						"pokemontcg",
+						"io"
+					],
+					"path": [
+						"v2",
+						"cards"
+					],
+					"query": [
+						{
+							"key": "q",
+							"value": "name:wooloo"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "http://api.nbp.pl/api/exchangerates/rates/a/eur",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://api.nbp.pl/api/exchangerates/rates/a/eur",
+					"protocol": "http",
+					"host": [
+						"api",
+						"nbp",
+						"pl"
+					],
+					"path": [
+						"api",
+						"exchangerates",
+						"rates",
+						"a",
+						"eur"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
